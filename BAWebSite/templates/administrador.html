@@ -1,0 +1,226 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">    
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+
+    <h1 align = center >Esta es la pagina de administracion de los datos</h1>
+
+    <h1>Lista Clientes</h1>
+    {% if clientes %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>CORREO</td>
+                <td>NOMBRE</td>
+                <td>DIRECCION</td>
+                <td>TELEFONO</td>
+                <td>ACCIONES</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cl in clientes %}
+                <tr>
+                    <td>{{cl.correo}}</td>
+                    <td>{{cl.nombre}}</td>
+                    <td>{{cl.direccion}}</td>
+                    <td>{{cl.telefono}}</td>
+                    <td>
+                        <button>accion</button>
+                        <button>accion</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h4>NO HAY REGISTROS</h4>
+    {% endif %}
+
+    <h1>Lista Tecnicos</h1>
+    {% if tecnicos %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>RUT</td>
+                <td>CORREO</td>
+                <td>NOMBRE</td>
+                <td>APELLIDO</td>
+                <td>TELEFONO</td>
+                <td>ACCIONES</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tc in tecnicos %}
+                <tr>
+                    <td>{{tc.rut}}</td>
+                    <td>{{tc.correo}}</td>
+                    <td>{{tc.nombre}}</td>
+                    <td>{{tc.apellido}}</td>
+                    <td>{{tc.telefono}}</td>
+                    <td>
+                        <button>accion</button>
+                        <button>accion</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h4>NO HAY REGISTROS</h4>
+    {% endif %}
+
+
+    <h1>Lista Solicitud</h1>
+    {% if solicitudes %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>NOMBRE</td>
+                <td>CORREO</td>
+                <td>MENSAJE</td>
+                <td>DIRECCION</td>
+                <td>ACCIONES</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sl in solicitudes %}
+                <tr>
+                    <td>{{sl.nombre}}</td>
+                    <td>{{sl.email}}</td>
+                    <td>{{sl.mensaje}}</td>
+                    <td>{{sl.direccion}}</td>
+                    <td>
+                        <button>accion</button>
+                        <button>accion</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h4>NO HAY REGISTROS</h4>
+    {% endif %}
+
+    <h1>Lista Producto</h1>
+    {% if productos %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>TITULO</td>
+                <td>DESCRIPCION</td>
+                <td>PRECIO</td>
+                <td>ACCIONES</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pc in productos %}
+                <tr>
+                    <td>{{pc.titulo}}</td>
+                    <td>{{pc.descripcion}}</td>
+                    <td>{{pc.precio}}</td>
+                    <td>
+                        <button>accion</button>
+                        <button>accion</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h4>NO HAY REGISTROS</h4>
+    {% endif %}
+    <button type="button" class="btn btn-success " data-toggle="modal" data-target="#exampleModal">
+        Agregar Productos
+    </button>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                  <label for="exampleFormControlInput1"></label>
+                                  <input type="email" class="form-control" name="titulo" id="exampleFormControlInput1" placeholder="Nombre del producto">
+                                </div>
+                                <div class="form-group">
+                                  <label for="">Precio</label>
+                                  <input class="form-control" type="number" name="precio" placeholder="Precio del producto">
+                                </div>
+                                <div class="form-group">
+                                  <label for="">Descripcion</label>
+                                  <textarea class="form-control" name="decripcion" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+                            </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+    <h1>Lista De Usuarios</h1>
+    {% if usuarios %}
+    <table class="table table-bordered"> 
+        <thead>
+            <tr>
+                <td>CORREO</td>
+                <td>TIPO</td>
+                <td>ACCIONES</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for us in usuarios %}
+                <tr>
+                    <td>{{us.email}}</td>
+                    <td>{{us.tipo}}</td>
+                    <td>
+                        <button>accion</button>
+                        <button>accion</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h2>NO HAY REGISTROS</h2>
+    {% endif %}
+
+
+
+    
+    {% include 'footer.html' %}
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>   
+    <script src="{% static 'js/j.query.validate.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

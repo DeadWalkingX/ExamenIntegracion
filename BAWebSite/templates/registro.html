@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">    
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4" align = center>
+
+            <h3>Para acceder a los servicios que presta nuestra pagina web debe registrarse acontinuacion: </h3>
+            <form action="crear_c" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Correo electronico</label>
+                    <input type="email" name="correo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese su correo electronico">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Contraseña</label>
+                    <input type="password" name="contra" class="form-control" id="exampleInputPassword1" placeholder="Ingrese su contraseña">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Repita su Contraseña</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Repita su contraseña">                        
+                </div>
+                <div class="form-group ">
+                    <label for="exampleCheck1">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" id="exampleCheck1" placeholder="Ingrese su nombre">
+                </div>
+                <div class="form-group ">
+                    <label  for="exampleCheck1">Direccion</label>
+                    <input type="text" name="direccion" class="form-control" id="exampleCheck1" placeholder="Ingrese su direccion">
+                </div>
+                <div class="form-group ">
+                    <label for="exampleCheck1">Telefono</label>
+                    <input type="number" name="telefono" class="form-control" id="exampleCheck1" placeholder="Ingrese su telefono">
+                </div>
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+    {% include 'footer.html' %}
+
+    
+  
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>   
+    <script src="{% static 'js/j.query.validate.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>
